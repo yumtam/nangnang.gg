@@ -1,0 +1,176 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root{
+    --black:black;
+    --white:white;
+    --gradient1:#AFFBCC;
+    --gradient2:#81D7BF;
+    --gradient3:#5EB2AE;
+    --gradient4:#488D96;
+    --gradient5:#3A6979;
+    --gradient6:#2F4858;
+    --switch1:#00421F;
+    --switch2:#0075AA;
+    --switch3:#D9EDDF;
+    --small-switch1:#ECF3E1;
+    --small-switch2:#758B58;
+}
+
+
+*{
+    font-family: Pretendard,"sans-serif";
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-decoration:none;
+    color:var(--black);
+    box-sizing: border-box;
+}
+
+a{
+    color:var(--text-color);
+}
+
+header{
+    height:80px;
+    color:var(--white);
+}
+
+header a{
+    color:var(--white);
+}
+
+.header_title{
+    display:flex;
+    background-color:var(--gradient6);
+    font-weight:bold;
+    font-size:20px;
+    height:50px;
+    position:relative;
+}
+
+.header_title .logo{
+    display:flex;
+    font-size:20px;
+    align-items:center;
+    padding:0 10px;
+}
+
+.header_title .date{
+    font-size:15px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+
+.header_info{
+    display:flex;
+    background-color:var(--small-switch2);
+    height:30px;
+    font-size:11px;
+    align-items:center;
+    padding:0 10px;
+}
+
+.header_info img{
+    height:15px;
+    margin-right:5px;
+}
+
+.main{
+    background-image:url("Assets/MapSelection/Karakin.jpg");
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    min-height:900px;
+}
+
+.container{
+    background-color:var(--small-switch1);
+    width:500vw;
+    max-width:800px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    position:relative;
+}
+
+.pubg_logo{
+    width: 510px;
+    height:300px;
+    position:absolute;
+    top:-50px;
+}
+
+form.search{
+    width:420px;
+    height:60px;
+    position:absolute;
+    top:200px;
+    text-align:center;
+    border:3px solid black;
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    background-color: var(--white);
+}
+
+form.search input{
+    background-color:var(--switch3);
+    width:350px;
+    padding:10px;
+    border-radius:25px;
+    color:var(--text-color-3);
+    border:none;
+}
+
+form.search button{
+    background-color: var(--switch3);
+    padding:10px;
+    border-radius:30px;
+    color:var(--text-color);
+    border:none;
+}
+
+form.search input::placeholder{
+    color:var(--small-switch2);
+}
+
+.ranking_container{
+    width:500px;
+    height:390px;
+    position:absolute;
+    top:300px;
+    background-color: var(--white);
+    padding:10px;
+    font-size:13px;
+    font-weight:bold;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+}
+
+table.ranking{
+    font-weight:normal;
+    border-collapse: collapse;
+}
+
+table.ranking th,td{
+    border:1px solid black; 
+    text-align: center;
+    font-size: 12px;
+    padding:7px;
+}
+
+table.ranking th{
+    background-color: var(--gradient2);
+}
+
+.footer{
+    height:100px;
+    background-color: var(--gradient6);
+    color:var(--white);
+    font-size:10px;
+    padding:10px;
+    line-height:2em;
+}

@@ -1,0 +1,420 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root{
+    --black:#222222;
+    --white:white;
+    --grey:#9AA4AF;
+    --white-grey:rgb(236, 236, 236);
+    --gradient1:#AFFBCC;
+    --gradient2:#81D7BF;
+    --gradient3:#5EB2AE;
+    --gradient4:#488D96;
+    --gradient5:#3A6979;
+    --gradient6:#2F4858;
+    --switch1:#00421F;
+    --switch2:#0075AA;
+    --switch3:#D9EDDF;
+    --small-switch1:#ECF3E1;
+    --small-switch2:#758B58;
+}
+
+*{
+    font-family: Pretendard,"sans-serif";
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-decoration:none;
+    box-sizing:border-box;
+}
+
+a{
+    color:var(--text-color);
+}
+
+header{
+    height:80px;
+    color:var(--white);
+}
+
+header a{
+    color:var(--white);
+}
+
+.header_title{
+    display:flex;
+    background-color:var(--gradient6);
+    font-weight:bold;
+    font-size:20px;
+    height:50px;
+    position:relative;
+}
+
+.header_title .logo{
+    display:flex;
+    font-size:20px;
+    align-items:center;
+    padding:0 10px;
+}
+
+.header_title .date{
+    font-size:15px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+
+.header_info{
+    display:flex;
+    background-color:var(--small-switch2);
+    height:30px;
+    font-size:11px;
+    align-items:center;
+    padding:0 10px;
+}
+
+.header_info img{
+    height:15px;
+    margin-right:5px;
+}
+
+.main{
+    background-color:var(--small-switch1);
+    display:flex;
+    justify-content:center;
+    padding:100px 0;
+}
+
+.container{
+    width:950px;
+    position:relative;
+}
+
+.character{
+    padding:20px;
+    width:100%;
+    background-color: var(--gradient5);
+}
+
+.character_ID a{
+    font-size:40px;
+    color:var(--white);
+    padding:5px;
+}
+
+.buttons{
+    padding:15px 5px 5px;
+}
+
+.buttons button{
+    padding:5px;
+    border:none;
+    border-radius: 5px;
+    background-color: var(--gradient3);
+    color:var(--white);
+}
+
+.buttons button a i{
+    color:var(--white);
+}
+
+#favorite{
+    display:none;
+}
+
+.refresh_time{
+    font-size:12px;
+    color:var(--white);
+    display:flex;
+    padding:0 5px;
+}
+
+.character_addon{
+    position:relative;
+}
+
+.main_statistics{
+    font-size:12px;
+    color:var(--white);
+    display:flex;
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.record_container{
+    margin:10px 0;
+    width:100%;
+    min-height:1000px;
+    display:flex;
+}
+
+.summary{
+    width:30%;
+    margin-top:10px;
+    margin-right:20px;
+    background-color:var(--white);
+}
+
+.record{
+    width:70%;
+}
+
+li.match{
+    margin:10px 0;
+}
+
+li.match section.match_main{
+    height:80px;
+    display:flex;
+    text-align:center;
+    font-size:11px;
+    position:relative;
+    background-color: var(--white);
+    color:var(--black);
+
+}
+
+li.match section.match_main .match_header{
+    display:flex;
+    background-color: var(--gradient1);
+    width:25%;
+}
+
+li.match section.match_main .match_header div{
+    width:50%;
+}
+
+li.match section.match_main .match_header .match_setting ul{
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align:left;
+    padding:10px;
+}
+
+li.match section.match_main .match_header .match_ranking{
+    padding-top:15%;
+}
+
+li.match section.match_main .match_header .match_ranking .match_ranking_value{
+    font-size:23px;
+}
+
+li.match section.match_main dl.match_main_info{
+    width:50%;
+    display:flex;
+}
+
+li.match section.match_main dl.match_main_info div{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+li.match section.match_main dl.match_main_info div dd span{
+    font-size:20px;
+}
+
+li.match section.match_main dl.match_main_info div dt span{
+    color:var(--grey);
+}
+
+li.match section.match_main dl.match_main_info div{
+    width:calc(100%/3);
+}
+
+li.match section.match_main ul.team{
+    width:20%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+li.match section.match_main .toggle_match_detail{
+    width:5%;
+    height:100%;
+    position:relative;
+}
+
+li.match section.match_main .toggle_match_detail a{
+    font-size:13px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+}
+
+li.match section.match_detail{
+    padding:15px;
+    margin-top:10px;
+    background-color: var(--white);
+}
+
+li.match section.match_detail section.performance table{
+    text-align: center;
+    font-size:11px;
+    border-collapse:collapse;
+}
+
+li.match section.match_detail section.performance table thead>tr>th{
+    padding:10px;
+}
+
+li.match section.match_detail section.performance table tbody>tr>td{
+    padding:10px;
+}
+
+li.match section.match_detail section.performance table.performance_table td{
+    border-top:1px solid var(--black);
+}
+
+.table_teammate_name span{
+    font-weight: bold;
+}
+
+li.match section.match_detail section.performance{
+    padding-bottom:10px;
+}
+
+li.match section.match_detail section.timeline{
+    border-top:2px solid var(--black);
+    padding-top:10px;
+}
+
+li.match section.match_detail section.timeline table{
+    text-align:center;
+    font-size:11px;
+    border-collapse:collapse;
+    width:620px;
+}
+
+
+li.match section.match_detail section.timeline table thead>tr>th{
+    padding:5px;
+}
+
+li.match section.match_detail section.timeline table tbody>tr>td{
+    padding:5px;
+}
+
+li.match section.match_detail section.timeline table.timeline_table td{
+    border-top:1px solid var(--white-grey);
+    border-bottom:1px solid var(--white-grey);
+}
+
+li.match section.match_detail section.timeline table thead{
+    display:block;
+}
+
+li.match section.match_detail section.timeline table tbody{
+    max-height:330px;
+    display:block;
+    overflow-y:auto;
+}
+
+li.match section.match_detail section.timeline table tbody::-webkit-scrollbar{
+    width:8px;
+}
+
+li.match section.match_detail section.timeline table tbody::-webkit-scrollbar-thumb{
+    background-color:var(--grey);
+    border-radius:8px;
+    background-clip: padding-box;
+    border:2px solid transparent;
+}
+
+li.match section.match_detail section.timeline table tbody::-webkit-scrollbar-track{
+    background-color:var(--white-grey);
+    border-radius:8px;
+}
+
+li.match section.match_detail section.timeline .timeline_id{
+    width:130px;
+}
+
+li.match section.match_detail section.timeline .damage_log{
+    display:flex;
+    justify-content: space-evenly;
+    width:130px;
+}
+
+.footer{
+    height:100px;
+    background-color: var(--gradient6);
+    color:var(--white);
+    font-size:10px;
+    padding:11px;
+    line-height:15px;
+}
+
+li.match section.match_main .toggle_match_detail a:hover>i{
+    color:var(--switch2);
+}
+
+section.match_detail{
+    display:none;
+}
+
+section.match_detail.active{
+    display:block;
+}
+
+
+
+.enemy{
+    max-width:70px;
+}
+
+.weapon{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width:23px;
+
+}
+
+
+.bar{
+    background-color: var(--small-switch1);
+    width:70px;
+    height:8px;
+    border-radius:8px;
+    margin-top:3px;
+    overflow:hidden;
+}
+
+.bar_before{
+    background-color: var(--gradient2);
+    height:100%;
+}
+.bar_after{
+    background-color: var(--gradient5);
+    height:100%;
+}
+
+.bar2{
+    background-color: var(--small-switch1);
+    width:70px;
+    height:8px;
+    border-radius:8px;
+    margin-top:3px;
+    overflow:hidden;
+    position:relative;
+}
+
+.bar_outer{
+    background-color: var(--grey);
+    height:100%;
+}
+.bar_inner{
+    background-color: var(--switch2);
+    height:100%;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+
+a:hover {
+    text-decoration: underline;
+}

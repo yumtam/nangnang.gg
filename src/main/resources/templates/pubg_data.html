@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/pubg_data.css">
+    <script src="/pubg_data.js" defer></script>
+    <script src="https://kit.fontawesome.com/24cb20a60d.js" crossorigin="anonymous"></script>
+    <title>PUBG Data</title>
+</head>
+<body>
+<header class="header">
+    <div class="header_title">
+        <div class="logo"><a href="../../">NANGNANG.GG</a></div>
+        <div class="date_container"><a class="date" id="date">date</a></div>
+    </div>
+    <div class="header_info">
+        <img src="Assets\Logos\PUBG_Icon_White.png" class="header_pubg_logo">
+        <a>배틀그라운드 전적 검색 사이트</a>
+    </div>
+</header>
+<main class="main">
+    <div class="container">
+        <div class="character">
+            <div class="character_ID"><a th:text="${userName}">Noonquiver</a></div>
+            <div class="character_addon">
+                <div class="buttons">
+                    <button class="refresh">
+                        <a href="">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            &nbsp전적 갱신
+                        </a>
+                    </button>
+                    <button class="fav">
+                        <a href="">
+                            <i id="unfavorite" class="fa-regular fa-star"></i>
+                            <i id="favorite" class="fa-solid fa-star"></i>
+                            &nbsp즐겨찾기
+                        </a>
+                    </button>
+                </div>
+                <div class="refresh_time">
+                    최근 업데이트:&nbsp<div th:text="${lastUpdateTime}">3시간전</div>
+                </div>
+                <div class="main_statistics">
+                    <div class="win_statistics">?승&nbsp</div>
+                    <div class="kill_statistics">?킬</div>
+                </div>
+            </div>
+        </div>
+        <div class="record_container">
+            <div class="summary">
+            </div>
+            <div class="record">
+                <ul>
+                    <li class="match" th:each="gameStat, iter : ${gameStatList}">
+                        <section class="match_main">
+                            <div class="match_header" th:style="'background-color:' + ${gameStatList[iter.index].winPlace <= 10 ? 'var(--gradient1)' : 'var(--white-grey)'}  ">
+                                <div class="match_setting">
+                                    <ul>
+                                        <li class="game_mode">
+                                            <span th:text="${matchList[iter.index].mapName}">사녹</span>&nbsp
+                                            <span th:text="${matchList[iter.index].gameMode}">듀오</span>
+                                        </li>
+                                        <li class="game_view">
+                                            <span>일반</span>&nbsp
+                                            <span>3인칭</span>
+                                        </li>
+                                        <li class="game_time">
+                                            <span th:text="${matchUpdateTimeList[iter.index]}">3시간 전</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="match_ranking">
+                                    <span class="match_ranking_value" th:text="'#' + ${gameStatList[iter.index].winPlace}">8</span>
+                                    <span class="match_ranking_total" th:text="'/' + ${gameStatList[iter.index].maxPlace}">49</span>
+                                </div>
+                            </div>
+                            <dl class="match_main_info">
+                                <div class="kill">
+                                    <dd class="info_data">
+                                        <span th:text="${gameStatList[iter.index].kills}">4</span>
+                                    </dd>
+                                    <dt class="info_category">
+                                        <span>킬</span>
+                                    </dt>
+                                </div>
+                                <div class="damage">
+                                    <dd class="info_data">
+                                        <span th:text="${#numbers.formatDecimal(gameStatList[iter.index].damageDealt, 1, 0)}">356</span>
+                                    </dd>
+                                    <dt class="info_category">
+                                        <span>데미지</span>
+                                    </dt>
+                                </div>
+                                <div class="duration">
+                                    <dd class="info_data">
+                                        <span th:text="${gameStatList[iter.index].timeSurvived / 60} + ':' + ${#numbers.formatInteger(gameStatList[iter.index].timeSurvived % 60, 2)}">16:08</span>
+                                    </dd>
+                                    <dt class="info_category">
+                                        <span>생존 시간</span>
+                                    </dt>
+                                </div>
+                            </dl>
+                            <ul class="team">
+                                <li class="teammate" th:each="teamMemberGameStat : ${teamMemberGameStatList[iter.index]}">
+                                    <a th:text="${teamMemberGameStat.userName}" th:href="'/user/'+${teamMemberGameStat.userName}">Noonquiver</a>
+                                </li>
+                            </ul>
+                            <div class="toggle_match_detail">
+                                <a class="toggleBtn">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                </a>
+                            </div>
+                        </section>
+                        <section class="match_detail">
+                            <section class="performance">
+                                <table class="performance_table">
+                                    <thead>
+                                        <tr>
+                                            <th>팀원 이름</th>
+                                            <th>킬</th>
+                                            <th>다운됨</th>
+                                            <th>어시</th>
+                                            <th>소생</th>
+                                            <th>데미지</th>
+                                            <th>받은 피해</th>
+                                            <th>회복량</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="teamMemberGameStat : ${teamMemberGameStatList[iter.index]}">
+                                            <td class="table_teammate_name">
+                                                <a th:text="${teamMemberGameStat.userName}" th:href="'/user/'+${teamMemberGameStat.userName}">ididwell</a>
+                                            </td>
+                                            <td>
+                                                <span th:text="${teamMemberGameStat.kills}">2</span>
+                                            </td>
+                                            <td>
+                                                <span th:text="${teamMemberGameStat.downsSelf}">1</span>
+                                            </td>
+                                            <td>
+                                                <span th:text="${teamMemberGameStat.assists}">4</span>
+                                            </td>
+                                            <td>
+                                                <span th:text="${teamMemberGameStat.revives}">1</span>
+                                            </td>
+                                            <td>
+                                                <span th:text="${#numbers.formatDecimal((teamMemberGameStat.damageDealt - teamMemberGameStat.damageDealtToBots), 1, 0)}">356</span>
+                                                <div class="bar2">
+                                                    <div class="bar_outer" style="width:50%" th:style="'width:'+ ${100 * teamMemberGameStat.damageDealt / teamMaxStatList[iter.index]['maxDamageDealt']} +'%'"></div>
+                                                    <div class="bar_inner" style="width:40%" th:style="'width:'+ ${100 * (teamMemberGameStat.damageDealt - teamMemberGameStat.damageDealtToBots) / teamMaxStatList[iter.index]['maxDamageDealt']} +'%'"></div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span th:text="${#numbers.formatDecimal(teamMemberGameStat.damageTaken - teamMemberGameStat.damageTakenByBluezone, 1, 0)}">170</span>
+                                                <div class="bar2">
+                                                    <div class="bar_outer" style="width:50%" th:style="'width:'+ ${100 * teamMemberGameStat.damageTaken / teamMaxStatList[iter.index]['maxDamageTaken']} +'%'"></div>
+                                                    <div class="bar_inner" style="width:40%" th:style="'width:'+ ${100 * (teamMemberGameStat.damageTaken - teamMemberGameStat.damageTakenByBluezone) / teamMaxStatList[iter.index]['maxDamageTaken']} +'%'"></div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span th:text="${#numbers.formatDecimal(teamMemberGameStat.healAmount, 1, 0)}">180</span>
+                                                <div class="bar2">
+                                                    <div class="bar_inner" style="width:50%" th:style="'width:'+ ${100 * teamMemberGameStat.healAmount / teamMaxStatList[iter.index]['maxHealAmount']} +'%'"></div>
+                                                </div>
+                                            </td>
+                                    </tbody>
+                                </table>
+                            </section>
+                            <section class="timeline">
+                                <table class="timeline_table">
+                                    <thead>
+                                        <tr>
+                                            <th>시간</th>
+                                            <th th:each="teamMemberGameStat : ${teamMemberGameStatList[iter.index]}">
+                                                <div class="timeline_id"><a th:text="${teamMemberGameStat.userName}" th:href="'/user/'+${teamMemberGameStat.userName}">1번 사람</a></div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="teamMemberDamageLog : ${teamMemberDamageLogList[iter.index]}">
+                                            <td>
+                                                <span th:text="${teamMemberDamageLog.time / 60} + ':' + ${#numbers.formatInteger(teamMemberDamageLog.time % 60, 2)}">05:30</span>
+                                            </td>
+                                            <td>
+                                                <div class="damage_log">
+                                                    <th:block th:if="${(teamMemberGameStatList[iter.index].size() >= 1) and (teamMemberDamageLog.attacker == teamMemberGameStatList[iter.index][0].userName)}">
+                                                        <div class="enemy">
+                                                            <a th:text="${teamMemberDamageLog.victim}" th:href="'/user/'+${teamMemberDamageLog.victim}">1번이름이 엄청 길면 이렇게 되는 느낌</a>
+                                                            <div class="bar2">
+                                                                <div class="bar_outer" style="width:50%" th:style="'width:' + ${teamMemberDamageLog.victimHealth + teamMemberDamageLog.damage} + '%'"></div>
+                                                                <div class="bar_inner" style="width:40%" th:style="'width:' + ${teamMemberDamageLog.victimHealth} + '%'"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="weapon">
+                                                            <span th:text="${teamMemberDamageLog.reason}">베릴</span>
+                                                            <span th:text="${#numbers.formatDecimal(teamMemberDamageLog.damage, 1, 1)}">25.3</span>
+                                                        </div>
+                                                    </th:block>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="damage_log">
+                                                    <th:block th:if="${(teamMemberGameStatList[iter.index].size() >= 2) and (teamMemberDamageLog.attacker == teamMemberGameStatList[iter.index][1].userName)}">
+                                                        <div class="enemy">
+                                                            <a th:text="${teamMemberDamageLog.victim}" th:href="'/user/'+${teamMemberDamageLog.victim}">1번이름이 엄청 길면 이렇게 되는 느낌</a>
+                                                            <div class="bar2">
+                                                                <div class="bar_outer" style="width:50%" th:style="'width:' + ${teamMemberDamageLog.victimHealth + teamMemberDamageLog.damage} + '%'"></div>
+                                                                <div class="bar_inner" style="width:40%" th:style="'width:' + ${teamMemberDamageLog.victimHealth} + '%'"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="weapon">
+                                                            <span th:text="${teamMemberDamageLog.reason}">베릴</span>
+                                                            <span th:text="${#numbers.formatDecimal(teamMemberDamageLog.damage, 1, 1)}">25.3</span>
+                                                        </div>
+                                                    </th:block>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="damage_log">
+                                                    <th:block th:if="${(teamMemberGameStatList[iter.index].size() >= 3) and (teamMemberDamageLog.attacker == teamMemberGameStatList[iter.index][2].userName)}">
+                                                        <div class="enemy">
+                                                        <a th:text="${teamMemberDamageLog.victim}" th:href="'/user/'+${teamMemberDamageLog.victim}">1번이름이 엄청 길면 이렇게 되는 느낌</a>
+                                                        <div class="bar2">
+                                                            <div class="bar_outer" style="width:50%" th:style="'width:' + ${teamMemberDamageLog.victimHealth + teamMemberDamageLog.damage} + '%'"></div>
+                                                            <div class="bar_inner" style="width:40%" th:style="'width:' + ${teamMemberDamageLog.victimHealth} + '%'"></div>
+                                                        </div>
+                                                    </div>
+                                                        <div class="weapon">
+                                                        <span th:text="${teamMemberDamageLog.reason}">베릴</span>
+                                                        <span th:text="${#numbers.formatDecimal(teamMemberDamageLog.damage, 1, 1)}">25.3</span>
+                                                    </div>
+                                                    </th:block>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="damage_log">
+                                                    <th:block th:if="${(teamMemberGameStatList[iter.index].size() >= 4) and (teamMemberDamageLog.attacker == teamMemberGameStatList[iter.index][3].userName)}">
+                                                        <div class="enemy">
+                                                            <a th:text="${teamMemberDamageLog.victim}" th:href="'/user/'+${teamMemberDamageLog.victim}">1번이름이 엄청 길면 이렇게 되는 느낌</a>
+                                                            <div class="bar2">
+                                                                <div class="bar_outer" style="width:50%" th:style="'width:' + ${teamMemberDamageLog.victimHealth + teamMemberDamageLog.damage} + '%'"></div>
+                                                                <div class="bar_inner" style="width:40%" th:style="'width:' + ${teamMemberDamageLog.victimHealth} + '%'"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="weapon">
+                                                            <span th:text="${teamMemberDamageLog.reason}">베릴</span>
+                                                            <span th:text="${#numbers.formatDecimal(teamMemberDamageLog.damage, 1, 1)}">25.3</span>
+                                                        </div>
+                                                    </th:block>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    © 2022-2023. NANGNANG.GG. All Rights Reserved. NANGNANG.GG isn’t endorsed by Krafton and doesn’t reflect the views
+    or opinions of Krafton or anyone officially involved in producing or managing PUBG: BATTLEGROUNDS.
+</footer>
+</body>
+</html>
